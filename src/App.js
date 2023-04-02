@@ -1,10 +1,11 @@
 // import logo from './logo.svg';
 import "./App.css";
+import Header from "./components/Layout/Header/Header";
 
 function App() {
   return (
     <div className="App">
-      <h1>lets build the disney + clone</h1>
+      <Header />
     </div>
   );
 }
