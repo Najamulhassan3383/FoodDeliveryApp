@@ -4,17 +4,18 @@ import Header from "./components/Layout/Header/Header";
 import Meal from "./components/Meals/Meal";
 import Cart from "./components/Cart/Cart";
 import { useState } from "react";
+import CartProvider from "./store/Cart_provide";
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(true);
+  const [cartIsShown, setCartIsShown] = useState(false);
   return (
-    <div className="App">
+    <CartProvider>
       {cartIsShown && <Cart setfun={setCartIsShown} />}
       <Header setfun={setCartIsShown} />
       <main>
         <Meal />
       </main>
-    </div>
+    </CartProvider>
   );
 }
 
