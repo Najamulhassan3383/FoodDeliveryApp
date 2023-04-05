@@ -1,7 +1,10 @@
 import CartIcon from "../../Cart/CartIcon";
 import classes from "../Header/HeaderCartIcon.module.css";
+import { useCart } from "../../../store/Cart_provide";
 
 const HeaderCartButton = (props) => {
+  const { numberOfItem } = useCart();
+
   const handleClose = () => {
     props.onClose(true);
   };
@@ -11,7 +14,7 @@ const HeaderCartButton = (props) => {
         <CartIcon />
       </span>
       <span>Your Cart</span>
-      <span className={classes.badge}>3</span>
+      <span className={classes.badge}>{numberOfItem}</span>
     </button>
   );
 };

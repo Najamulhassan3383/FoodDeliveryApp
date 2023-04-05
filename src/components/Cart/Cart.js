@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./Cart.module.css";
 import Model from "../UI/Model";
+// import { useCart } from "../../store/Cart_provide";
 
 export default function Cart(props) {
   const cartItems = (

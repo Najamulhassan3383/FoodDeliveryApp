@@ -1,8 +1,15 @@
 import React from "react";
 import classes from "./MealItemForm.module.css";
 import InputCard from "./InputCard";
+import { useContext } from "react";
+// import CartProvider from "../../store/Cart_provide";
+// import cart_context from "../../store/Cart_context";
+
+import { useCart } from "../../store/Cart_provide";
 
 function MealItemForm(props) {
+  const { addItem } = useCart();
+
   return (
     <form className={classes.form}>
       <InputCard
@@ -16,7 +23,16 @@ function MealItemForm(props) {
           defaultValue: "1",
         }}
       />
-      <button>+ Add</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+
+          addItem();
+          console.log("i am here");
+        }}
+      >
+        + Add
+      </button>
     </form>
   );
 }
