@@ -1,17 +1,37 @@
 import CartIcon from "../../Cart/CartIcon";
 import classes from "../Header/HeaderCartIcon.module.css";
 import { useCart } from "../../../store/Cart_provide";
-
+import { useEffect, useState } from "react";
 const HeaderCartButton = (props) => {
-  // const { numberOfItem } = useCart();
-  const numberOfItem = useCart().items.reduce((curNumber, item) => {
+  const cartCtx = useCart();
+  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
+  const numberOfItem = cartCtx.items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);
   const handleClose = () => {
     props.onClose(true);
   };
+  const btnClasses = `${classes.button} ${
+    btnIsHighlighted ? classes.bump : ""
+  }`;
+
+  // console.log(btnIsHighlighted);
+  useEffect(() => {
+    if (cartCtx.items.length === 0) {
+      return;
+    }
+
+    setBtnIsHighlighted(true);
+    const timer = setTimeout(() => {
+      setBtnIsHighlighted(false);
+    }, 300);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [cartCtx.items]);
+
   return (
-    <button className={classes.button} onClick={handleClose}>
+    <button className={btnClasses} onClick={handleClose}>
       <span className={classes.icon}>
         <CartIcon />
       </span>

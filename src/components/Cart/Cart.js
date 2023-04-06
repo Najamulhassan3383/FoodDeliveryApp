@@ -9,7 +9,8 @@ export default function Cart(props) {
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const showorder = cartCtx.items.length > 0;
   const addhandler = (item) => {
-    cartCtx.addItem({ ...item, amount: 1 });
+    console.log(item);
+    cartCtx.addItem(item);
   };
 
   const removehandler = (id) => {
