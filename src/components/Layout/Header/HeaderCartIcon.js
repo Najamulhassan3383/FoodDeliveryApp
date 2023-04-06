@@ -3,8 +3,10 @@ import classes from "../Header/HeaderCartIcon.module.css";
 import { useCart } from "../../../store/Cart_provide";
 
 const HeaderCartButton = (props) => {
-  const { numberOfItem } = useCart();
-
+  // const { numberOfItem } = useCart();
+  const numberOfItem = useCart().items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
   const handleClose = () => {
     props.onClose(true);
   };
